@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for ssafy-ai-5-be on 2025-01-02T03:15:07+09:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'ssafy-ai-5-be'
+primary_region = 'nrt'
+
+[build]
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

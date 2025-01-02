@@ -21,6 +21,10 @@ openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI()
 
+# CORS 설정
+origins = [
+    "https://ssafy-ai-5-fe.vercel.app",  # 요청을 허용할 프론트엔드 도메인
+]
 # Allow CORS for local dev
 app.add_middleware(
     CORSMiddleware,
@@ -34,6 +38,10 @@ app.add_middleware(
 # 사용자 요청 모델
 class MessageRequest(BaseModel):
     message: str
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
 
 # POST 엔드포인트
 @app.post("/chat")
